@@ -1,0 +1,59 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$V0hIYVJsMEFRbzZt$yLfm5vqUKfweEanZmgdyCA",
+      "last_login": "2020-02-24T13:13:16.125Z",
+      "is_superuser": true,
+      "username": "wolfgangdie",
+      "first_name": "Wolfgang",
+      "last_name": "Dielingen",
+      "email": "wolfrainx@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-02-24T13:06:23Z",
+      "name": "Wolfgang Dielingen",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$MjJUaHdScFJPWEZ5$FKir6cG1NWXIZooUZ89v/Q",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "asanchez",
+      "first_name": "Alberto",
+      "last_name": "S\u00e1nchez",
+      "email": "asanchez@talpor.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-02-24T13:07:46Z",
+      "name": "Alberto S\u00e1nchez",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "argon2$argon2i$v=19$m=512,t=2,p=2$elJYUVhWOG1LSlZz$5Os9QL9PA//U89diT2w73Q",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "ppinango",
+      "first_name": "Pedro",
+      "last_name": "Pi\u00f1ango",
+      "email": "ppinango@talpor.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-02-24T13:08:35Z",
+      "name": "Pedro Pi\u00f1ango",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

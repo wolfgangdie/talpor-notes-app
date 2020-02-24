@@ -4,21 +4,25 @@ Talpor notes app for interview process based on React (frontend) / Django (backe
 
 Author: Wolfgang Dielingen ([wolfrainx@gmail.com](mailto:wolfrainx@gmail.com)).
 
-# Backend configuration
+## Backend configuration
 
-## Prerequisites
+The backend of the project can be configured in two different forms: as local development environment directly in the host, or as Docker image for quick development environment setting.
 
-- Python 3.7
-- PostgreSQL
+### Prerequisites
+
+- [Python 3.7](https://www.python.org/downloads/)
+- [PostgreSQL](https://www.postgresql.org/download/)
 
 In case of using Docker for setting up your local environment, you will need these prerequisites:
 
 - [Docker](https://docs.docker.com/install/#supported-platforms)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Getting up and running locally
+### Getting up and running locally
 
 The instructions are based on the configuration process provided by [Cookiecutter Django](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#setting-up-development-environment).
+
+> To be able to execute the following commands successfully, you must be located in the `/backend` directory at the root of the project.
 
 > I could not test this configuration process because currently, I have been working with Windows OS and Docker to configure my local environment.
 
@@ -43,7 +47,7 @@ The instructions are based on the configuration process provided by [Cookiecutte
 4. Create a new PostgreSQL database using createdb:
 
    ```
-   $ createdb <what you have entered as the project_slug at setup stage> -U postgres --password <password>
+   $ createdb tna_backend -U postgres --password <password>
    ```
 
    > If this is the first time a database is created on your machine you might need an [initial PostgreSQL set up](http://suite.opengeo.org/docs/latest/dataadmin/pgGettingStarted/firstconnect.html) to allow local connections & set a password for the `postgres` user. The [postgres documentation](https://www.postgresql.org/docs/current/static/auth-pg-hba-conf.html) explains the syntax of the config file that you need to change.
@@ -67,15 +71,23 @@ The instructions are based on the configuration process provided by [Cookiecutte
    $ python manage.py migrate
    ```
 
-7. Apply migrations:
+7. Load fixtures in required order:
+
+   ```
+   $ python manage.py load_all_fixtures
+   ```
+
+8. See the application being served through Django development server:
 
    ```
    $ python manage.py runserver 0.0.0.0:8000
    ```
 
-## Getting up and running locally with Docker
+### Getting up and running locally with Docker
 
 The instructions are based on the configuration process provided by [Cookiecutter Django](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html).
+
+> To be able to execute the following commands successfully, you must be located in the `/backend` directory at the root of the project.
 
 1. Build the stack needed with Docker:
 
@@ -93,9 +105,44 @@ The instructions are based on the configuration process provided by [Cookiecutte
 
 3. Execute management commands:
 
-   ```
-   $ docker-compose -f local.yml run --rm django python manage.py migrate
-   $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
-   ```
+   - Run Django migrations on database:
 
-# Frontend configuration
+     ```
+     $ docker-compose -f local.yml run --rm django python manage.py migrate
+     ```
+
+   - Load fixtures in required order:
+
+     ```
+     $ docker-compose -f local.yml run --rm django python manage.py load_all_fixtures
+     ```
+
+   - Creation of superuser for Django (optional):
+     ```
+     $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
+     ```
+
+### Additional notes
+
+After completing setting up process, you will have three superusers in Django with the next credentials:
+
+- Alberto Sánchez
+
+  - username: `asanchez`
+  - email: `asanchez@talpor.com`
+  - password: `1234`
+
+- Pedro Piñango
+
+  - username: `ppinango`
+  - email: `ppinango@talpor.com`
+  - password: `1234`
+
+- Wolfgang Dielingen
+  - username: `wolfgangdie`
+  - email: `wolfrainx@gmail.com`
+  - password: `1234`
+
+> All users are for testing purpose only, each has a total of two preloaded notes.
+
+## Frontend configuration
