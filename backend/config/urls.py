@@ -4,19 +4,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 # API URLS
 urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
-    path("api/auth/", include('rest_auth.urls')),
-    path("api/auth/register/", include('rest_auth.registration.urls')),
+    path("api/auth/", include("rest_framework.urls")),
 ]
 
 if settings.DEBUG:
