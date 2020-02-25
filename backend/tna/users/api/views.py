@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 
+from drf_yasg.utils import swagger_auto_schema
+
 from rest_framework import permissions, status
 from rest_framework.decorators import action, permission_classes
 from rest_framework.mixins import (
@@ -20,15 +22,14 @@ class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericV
     queryset = User.objects.all()
     lookup_field = "username"
 
-    def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(id=self.request.user.id)
-
     @action(detail=False, methods=["GET"])
     def me(self, request):
         serializer = UserSerializer(request.user, context={"request": request})
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
     @action(detail=False, methods=["POST"], permission_classes=[permissions.AllowAny])
+    @swagger_auto_schema(request_body=UserCreateSerializer,
+                         responses={status.HTTP_201_CREATED: UserSerializer})
     def register(self, request):
         serializer = UserCreateSerializer(data=request.data)
 
