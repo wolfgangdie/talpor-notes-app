@@ -7,6 +7,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from tna_backend.users.api.views import UserViewSet
+from tna_backend.notes.api.views import NoteViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -14,6 +15,7 @@ else:
     router = SimpleRouter()
 
 router.register("users", UserViewSet)
+router.register("notes", NoteViewSet)
 
 app_name = "api"
 urlpatterns = router.urls
