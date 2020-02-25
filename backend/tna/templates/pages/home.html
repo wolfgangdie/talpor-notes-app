@@ -14,25 +14,45 @@
         color: #b9b9b9;
       }
 
-      p {
+      h1,
+      span {
         font-size: 2rem;
         margin: 0.25rem;
+        text-align: center;
         text-transform: uppercase;
       }
 
-      .wrapper {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        flex-direction: column;
+      span {
+        font-size: 1rem;
+      }
+
+      section {
+        display: grid;
+        grid-template-rows: auto min-content;
         height: 100vh;
+      }
+
+      .content,
+      .credits {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .credits span {
+        margin-bottom: 1rem;
       }
     </style>
   </head>
   <body>
-    <div class="wrapper">
-      <p>Talpor Notes App</p>
-      <p>(Backend)</p>
-    </div>
+    <section>
+      <div class="content">
+        <h1>Talpor Notes App</h1>
+        <span>API REST (Backend)</span>
+      </div>
+      <div class="credits">
+        <span>Wolfgang Dielingen</span>
+      </div>
+    </section>
   </body>
 </html>
