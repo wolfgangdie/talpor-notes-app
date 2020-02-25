@@ -1,6 +1,6 @@
 import pytest
 
-from tna_backend.users.models import User
+from tna.users.models import User
 
 pytestmark = pytest.mark.django_db
 

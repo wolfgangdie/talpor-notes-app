@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from tna_backend.notes.models import Note
+from tna.notes.models import Note
 
 
 @admin.register(Note)

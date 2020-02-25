@@ -6,8 +6,8 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView, TokenRefreshView,
 )
 
-from tna_backend.users.api.views import UserViewSet
-from tna_backend.notes.api.views import NoteViewSet
+from tna.users.api.views import UserViewSet
+from tna.notes.api.views import NoteViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()

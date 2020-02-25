@@ -1,7 +1,7 @@
 import pytest
 
-from tna_backend.users.forms import UserCreationForm
-from tna_backend.users.tests.factories import UserFactory
+from tna.users.forms import UserCreationForm
+from tna.users.tests.factories import UserFactory
 
 pytestmark = pytest.mark.django_db
 

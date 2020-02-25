@@ -1,6 +1,6 @@
 from django.urls import path
 
-from tna_backend.users.views import (
+from tna.users.views import (
     user_redirect_view,
     user_update_view,
     user_detail_view,
