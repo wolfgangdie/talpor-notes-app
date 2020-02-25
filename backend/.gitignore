@@ -267,7 +267,7 @@ tags
 
 ### Project template
 
-tna_backend/media/
+tna/media/
 
 .pytest_cache/
 

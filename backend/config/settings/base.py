@@ -6,8 +6,8 @@ import environ
 
 ROOT_DIR = (
     environ.Path(__file__) - 3
-)  # (tna_backend/config/settings/base.py - 3 = tna_backend/)
-APPS_DIR = ROOT_DIR.path("tna_backend")
+)  # (tna/config/settings/base.py - 3 = tna/)
+APPS_DIR = ROOT_DIR.path("tna")
 
 env = environ.Env()
 
@@ -73,8 +73,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "tna_backend.users.apps.UsersConfig",
-    "tna_backend.notes.apps.NotesConfig",
+    "tna.users.apps.UsersConfig",
+    "tna.notes.apps.NotesConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -82,7 +82,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "tna_backend.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "tna.contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -178,7 +178,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "tna_backend.utils.context_processors.settings_context",
+                "tna.utils.context_processors.settings_context",
             ],
         },
     }
@@ -259,9 +259,9 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "none"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "tna_backend.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "tna.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "tna_backend.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "tna.users.adapters.SocialAccountAdapter"
 
 # django-reset-framework
 # -------------------------------------------------------------------------------

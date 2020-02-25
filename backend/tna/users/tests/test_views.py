@@ -1,8 +1,8 @@
 import pytest
 from django.test import RequestFactory
 
-from tna_backend.users.models import User
-from tna_backend.users.views import UserRedirectView, UserUpdateView
+from tna.users.models import User
+from tna.users.views import UserRedirectView, UserUpdateView
 
 pytestmark = pytest.mark.django_db
 

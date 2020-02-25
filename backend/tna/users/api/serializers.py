@@ -2,7 +2,7 @@ from django.contrib.auth import password_validation
 
 from rest_framework import serializers
 
-from tna_backend.users.models import User
+from tna.users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):

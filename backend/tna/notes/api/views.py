@@ -2,8 +2,8 @@ from rest_framework import permissions, status
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.viewsets import ModelViewSet
 
-from tna_backend.notes.models import Note
-from tna_backend.notes.api.serializers import NoteSerializer
+from tna.notes.models import Note
+from tna.notes.api.serializers import NoteSerializer
 
 
 class IsOwner(permissions.BasePermission):

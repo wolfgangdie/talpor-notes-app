@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from tna_backend.notes.models import Note
+from tna.notes.models import Note
 
 
 class NoteSerializer(serializers.ModelSerializer):

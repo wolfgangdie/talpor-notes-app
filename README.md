@@ -47,7 +47,7 @@ The instructions are based on the configuration process provided by [Cookiecutte
 4. Create a new PostgreSQL database using createdb:
 
    ```
-   $ createdb tna_backend -U postgres --password <password>
+   $ createdb tna -U postgres --password <password>
    ```
 
    > If this is the first time a database is created on your machine you might need an [initial PostgreSQL set up](http://suite.opengeo.org/docs/latest/dataadmin/pgGettingStarted/firstconnect.html) to allow local connections & set a password for the `postgres` user. The [postgres documentation](https://www.postgresql.org/docs/current/static/auth-pg-hba-conf.html) explains the syntax of the config file that you need to change.

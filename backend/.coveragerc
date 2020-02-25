@@ -1,5 +1,5 @@
 [run]
-include = tna_backend/*
+include = tna/*
 omit = *migrations*, *tests*
 plugins =
     django_coverage_plugin

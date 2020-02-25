@@ -10,7 +10,7 @@ from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from tna_backend.users.api.serializers import UserSerializer, UserCreateSerializer
+from tna.users.api.serializers import UserSerializer, UserCreateSerializer
 
 User = get_user_model()
 
