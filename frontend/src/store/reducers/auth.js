@@ -8,6 +8,10 @@ const initialState = {
   loading: false
 };
 
+// ---------------------------------------------------
+// Authentication reducers
+// ---------------------------------------------------
+
 const authRequest = (state, action) => {
   return updateObject(state, {
     error: null,
@@ -38,6 +42,29 @@ const logout = (state, action) => {
   });
 };
 
+// ---------------------------------------------------
+// Token refresh reducers
+// ---------------------------------------------------
+
+const tokenRefreshRequest = (state, action) => {
+  return updateObject(state, {
+    error: null,
+    loading: true
+  });
+};
+
+const tokenRefreshSuccess = (state, action) => {
+  return updateObject(state, {
+    token: action.token,
+    error: null,
+    loading: false
+  });
+};
+
+// ---------------------------------------------------
+// Authentication swith reducers
+// ---------------------------------------------------
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_REQUEST:
@@ -48,6 +75,10 @@ const reducer = (state = initialState, action) => {
       return authFail(state, action);
     case actionTypes.AUTH_LOGOUT:
       return logout(state, action);
+    case actionTypes.TOKEN_REFRESH_REQUEST:
+      return tokenRefreshRequest(state, action);
+    case actionTypes.TOKEN_REFRESH_SUCCESS:
+      return tokenRefreshSuccess(state, action);
     default:
       return state;
   }

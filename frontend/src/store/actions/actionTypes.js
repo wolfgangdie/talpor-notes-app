@@ -8,6 +8,13 @@ export const AUTH_FAIL = "AUTH_FAIL";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
 // -----------------------------------------------
+// Token refresh action types
+// -----------------------------------------------
+
+export const TOKEN_REFRESH_REQUEST = "TOKEN_REFRESH_REQUEST";
+export const TOKEN_REFRESH_SUCCESS = "TOKEN_REFRESH_SUCCESS";
+
+// -----------------------------------------------
 // Notes action types
 // -----------------------------------------------
 

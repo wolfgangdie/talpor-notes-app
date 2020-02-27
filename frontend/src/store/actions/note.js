@@ -47,3 +47,14 @@ export const noteAddFail = error => {
     error: error
   };
 };
+
+// ---------------------------------------------------
+// Notes main actions
+// ---------------------------------------------------
+
+export const getNotes = () => {
+  return async dispatch => {
+    dispatch(notesListRequest());
+    dispatch(notesListFail());
+  };
+};

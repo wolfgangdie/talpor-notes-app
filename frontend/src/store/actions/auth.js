@@ -1,4 +1,9 @@
 import * as actionTypes from "./actionTypes";
+import * as api from "../utils/api";
+
+// ---------------------------------------------------
+// Authentication actions
+// ---------------------------------------------------
 
 export const authRequest = () => {
   return {
@@ -28,10 +33,56 @@ export const logout = () => {
   };
 };
 
+// ---------------------------------------------------
+// Token refresh actions
+// ---------------------------------------------------
+
+export const tokenRefreshRequest = () => {
+  return {
+    type: actionTypes.TOKEN_REFRESH_REQUEST
+  };
+};
+
+export const tokenRefreshSuccess = token => {
+  return {
+    type: actionTypes.TOKEN_REFRESH_SUCCESS,
+    token: token
+  };
+};
+
+// ---------------------------------------------------
+// Authentication main actions
+// ---------------------------------------------------
+
 export const login = (user, password) => {
   return async dispatch => {
     dispatch(authRequest());
-    dispatch(authFail());
+
+    try {
+      const data = {
+        username: user,
+        password: password
+      };
+
+      const response = await fetch(
+        `${api.BASE_URL}/token/`,
+        api.settings(api.METHOD_POST, data)
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw Error(JSON.stringify(json));
+      }
+
+      const { access, refresh } = json;
+
+      localStorage.setItem("token", access);
+
+      dispatch(authSuccess(access, refresh));
+    } catch (error) {
+      dispatch(authFail(error));
+    }
   };
 };
 
@@ -42,12 +93,33 @@ export const register = (user, email, pass, passRepeat) => {
   };
 };
 
-export const checkTokenExpiration = exp => {
-  return dispatch => {
-    setTimeout(() => {
-      dispatch(logout());
-    }, exp);
-  };
+export const refreshToken = async (refresh, dispatch) => {
+  dispatch(tokenRefreshRequest());
+
+  try {
+    const data = {
+      refresh: refresh
+    };
+
+    const response = await fetch(
+      `${api.BASE_URL}/token/refresh/`,
+      api.settings(api.METHOD_POST, data)
+    );
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw Error(JSON.stringify(json));
+    }
+
+    const { access } = json;
+
+    localStorage.setItem("token", access);
+
+    dispatch(tokenRefreshSuccess(access));
+  } catch (error) {
+    dispatch(logout());
+  }
 };
 
 export const handleError = error => {
