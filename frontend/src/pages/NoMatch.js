@@ -1,11 +1,21 @@
 import React, { Component } from "react";
 
+import Layout from "../components/Layout";
+
+import "./NoMatch.css";
+
 class NoMatch extends Component {
   render = () => {
     return (
-      <div className="layout 404">
-        <p>404</p>
-      </div>
+      <Layout>
+        <div className="no-match">
+          <h1>404</h1>
+          <p>Sorry, page not found</p>
+          <span role="img" aria-label="sad">
+            🙁
+          </span>
+        </div>
+      </Layout>
     );
   };
 }
