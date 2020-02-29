@@ -4,6 +4,11 @@ Talpor notes app for interview process based on React (frontend) / Django (backe
 
 Author: Wolfgang Dielingen ([wolfrainx@gmail.com](mailto:wolfrainx@gmail.com)).
 
+## Demo
+
+- Frontend: [https://tna-demo.netlify.com/](https://tna-demo.netlify.com/)
+- Backend: [https://wolfgangdie.pythonanywhere.com/](https://wolfgangdie.pythonanywhere.com/)
+
 ## Backend configuration
 
 The backend of the project can be configured in two different forms: as local development environment directly in the host, or as Docker image for quick development environment setting.
@@ -22,9 +27,7 @@ In case of using Docker for setting up your local environment, you will need the
 
 The instructions are based on the configuration process provided by [Cookiecutter Django](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#setting-up-development-environment).
 
-> To be able to execute the following commands successfully, you must be located in the `/backend` directory at the root of the project.
-
-> I could not test this configuration process because currently, I have been working with Windows OS and Docker to configure my local environment.
+> To be able to execute the following commands successfully, you must be placed in the `/backend` directory located at the root of the project.
 
 1. Create a virtualenv:
 
@@ -87,7 +90,7 @@ The instructions are based on the configuration process provided by [Cookiecutte
 
 The instructions are based on the configuration process provided by [Cookiecutter Django](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html).
 
-> To be able to execute the following commands successfully, you must be located in the `/backend` directory at the root of the project.
+> To be able to execute the following commands successfully, you must be placed in the `/backend` directory located at the root of the project.
 
 1. Build the stack needed with Docker:
 
@@ -146,3 +149,33 @@ After completing setting up process, you will have three superusers in Django wi
 > All users are for testing purpose only, each has a total of two preloaded notes.
 
 ## Frontend configuration
+
+### Prerequisites
+
+- [Node.js (Includes npm)](https://nodejs.org/en/download/)
+
+### Getting up and running locally
+
+> To be able to execute the following commands successfully, you must be placed in the `/frontend` directory located at the root of the project.
+
+1. Install npm dependencies:
+
+   ```
+   $ npm install
+   ```
+
+2. Create a local environment file called `.env.local` at the same level of `.env` file with the following content:
+
+   ```conf
+   # Local development environment
+
+   REACT_APP_API_DOMAIN="http://localhost:8000"
+   ```
+
+3. Runs the app in development mode:
+
+   ```
+   $ npm start
+   ```
+
+   > Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
