@@ -17,9 +17,14 @@ class NoteViewSet(ModelViewSet):
     permission_classes = (IsOwner,)
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return Note.objects.none()
+
         user = self.request.user
+
         if user.is_authenticated:
             return Note.objects.filter(owner=user)
+
         raise PermissionDenied()
 
     def perform_create(self, serializer):

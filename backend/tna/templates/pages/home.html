@@ -1,68 +1,66 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300&display=swap"
-      rel="stylesheet"
-    />
-    <title>Talpor Notes App</title>
-    <style>
-      body {
-        font-family: "Raleway", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        color: #b9b9b9;
-      }
+{% extends "base.html" %} {% block title %}Talpor Notes App{% endblock %} {%
+block css %}
+<link
+  href="https://fonts.googleapis.com/css?family=Raleway:300&display=swap"
+  rel="stylesheet"
+/>
 
-      h1,
-      span {
-        font-size: 2rem;
-        margin: 0.25rem;
-        text-align: center;
-        text-transform: uppercase;
-      }
+<style>
+  body {
+    font-family: "Raleway", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #b9b9b9;
+  }
 
-      span {
-        font-size: 1rem;
-      }
+  h1,
+  span {
+    font-size: 2rem;
+    margin: 0.25rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
 
-      a {
-        text-decoration: none;
-        color: #3464ff;
-        text-transform: none;
-      }
+  span {
+    font-size: 1rem;
+  }
 
-      section {
-        display: grid;
-        grid-template-rows: auto min-content;
-        height: 100vh;
-      }
+  a {
+    text-decoration: none;
+    color: #3464ff;
+    text-transform: none;
+  }
 
-      .content,
-      .credits {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+  section {
+    display: grid;
+    grid-template-rows: auto min-content;
+    height: 100vh;
+  }
 
-      .credits span {
-        margin-bottom: 1rem;
-      }
-    </style>
-  </head>
-  <body>
-    <section>
-      <div class="content">
-        <h1>Talpor Notes App</h1>
-        <span>API REST (Backend)</span>
-        <span
-          ><a href="{% url 'schema_swagger_ui' %}">Swagger</a> |
-          <a href="{% url 'schema_redoc' %}">ReDoc</a></span
-        >
-      </div>
-      <div class="credits">
-        <span>Wolfgang Dielingen</span>
-      </div>
-    </section>
-  </body>
-</html>
+  .content,
+  .credits {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .credits span {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+</style>
+{% endblock %} {% block content %}
+<section>
+  <div class="content">
+    <h1>Talpor Notes App</h1>
+    <span>API REST (Backend)</span>
+    <span
+      ><a href="{% url 'schema_swagger_ui' %}">Swagger</a> |
+      <a href="{% url 'schema_redoc' %}">ReDoc</a></span
+    >
+  </div>
+  <div class="credits">
+    <span>Wolfgang Dielingen</span>
+  </div>
+</section>
+{% endblock %}
