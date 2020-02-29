@@ -54,14 +54,14 @@ export const tokenRefreshSuccess = token => {
 // Authentication main actions
 // ---------------------------------------------------
 
-export const login = (user, password) => {
+export const login = (user, pass) => {
   return async dispatch => {
     dispatch(authRequest());
 
     try {
       const data = {
         username: user,
-        password: password
+        password: pass
       };
 
       const response = await fetch(
@@ -89,7 +89,34 @@ export const login = (user, password) => {
 export const register = (user, email, pass, passRepeat) => {
   return async dispatch => {
     dispatch(authRequest());
-    dispatch(authFail());
+
+    try {
+      const data = {
+        username: user,
+        email: email,
+        password: pass,
+        passwordr: passRepeat
+      };
+
+      const response = await fetch(
+        `${api.BASE_URL}/users/register/`,
+        api.settings(api.METHOD_POST, data)
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw Error(JSON.stringify(json));
+      }
+
+      const { access, refresh } = json;
+
+      localStorage.setItem("token", access);
+
+      dispatch(authSuccess(access, refresh));
+    } catch (error) {
+      dispatch(authFail(error));
+    }
   };
 };
 

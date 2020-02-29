@@ -1,0 +1,31 @@
+.form {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form h1 {
+  margin-top: 0;
+}
+
+.form input {
+  display: inline-block;
+  border: 1px solid var(--tna-main-color);
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.form input:last-child {
+  margin-bottom: 0;
+}
+
+.form input:disabled {
+  border-color: var(--tna-disabled-dark-color);
+  background-color: var(--tna-disabled-light-color);
+}
+
+.form input[type="submit"] {
+  width: auto;
+}

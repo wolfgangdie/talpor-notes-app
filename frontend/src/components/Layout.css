@@ -37,11 +37,11 @@
 }
 
 .layout section .container {
-  padding: 1.5rem;
+  padding: 2.5rem;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0 19px 38px rgba(95, 95, 95, 0.3),
-    0 15px 12px rgba(95, 95, 95, 0.22);
+  box-shadow: 0 19px 38px rgba(95, 95, 95, 0.1),
+    0 15px 12px rgba(95, 95, 95, 0.02);
 }
 
 .layout footer {
