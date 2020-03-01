@@ -21,6 +21,10 @@ code {
     monospace;
 }
 
+h1 {
+  font-weight: 400;
+}
+
 input {
   font-size: 1rem;
 }

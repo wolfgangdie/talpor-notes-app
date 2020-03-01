@@ -15,16 +15,16 @@ class Home extends Component {
             Django (backend).
           </p>
           <p>
-            Documentation:{" "}
-            <a href="https://github.com/wolfgangdie/talpor-notes-app#readme">
-              GitHub
+            <a
+              href="https://github.com/wolfgangdie/talpor-notes-app#readme"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub Docs
             </a>
           </p>
           <NavLink activeClassName="active" className="btn" to="/notes/">
             Listado de notas
-          </NavLink>
-          <NavLink activeClassName="active" className="btn" to="/notes/add/">
-            Agregar nota
           </NavLink>
         </div>
       </Layout>

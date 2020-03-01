@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export const FIVE_MINUTES_IN_MILLISECONDS = 300 * 1000;
 export const ONE_DAY_IN_MILLISECONDS = 24 * 3600 * 1000;
 
@@ -34,4 +36,27 @@ export const parseJWT = token => {
 
 export const tokenExpiration = token => {
   return new Date(parseJWT(token).exp * 1000);
+};
+
+export const handleErrorMessage = error => {
+  if (error) {
+    if (error instanceof TypeError) {
+      error = Error(JSON.stringify({ error_conn: [`${error.message}.`] }));
+    }
+
+    let messages = "";
+    const json = JSON.parse(error.message);
+
+    if (json.detail) {
+      messages = json.detail;
+    } else {
+      Object.keys(json).map(key => {
+        return json[key].map(message => {
+          return (messages = messages + message + ` `);
+        });
+      });
+    }
+
+    toast.error(messages);
+  }
 };

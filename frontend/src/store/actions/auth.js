@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as api from "../utils/api";
+import { handleErrorMessage } from "../utils/helpers";
 
 // ---------------------------------------------------
 // Authentication actions
@@ -81,6 +82,7 @@ export const login = (user, pass) => {
 
       dispatch(authSuccess(access, refresh));
     } catch (error) {
+      handleErrorMessage(error);
       dispatch(authFail(error));
     }
   };
@@ -115,6 +117,7 @@ export const register = (user, email, pass, passRepeat) => {
 
       dispatch(authSuccess(access, refresh));
     } catch (error) {
+      handleErrorMessage(error);
       dispatch(authFail(error));
     }
   };
@@ -146,24 +149,5 @@ export const refreshToken = async (refresh, dispatch) => {
     dispatch(tokenRefreshSuccess(access));
   } catch (error) {
     dispatch(logout());
-  }
-};
-
-export const handleError = error => {
-  if (error) {
-    if (error instanceof TypeError) {
-      error = Error(JSON.stringify({ error_conn: [`${error.message}.`] }));
-    }
-
-    let messages;
-    const json = JSON.parse(error.message);
-
-    Object.keys(json).map(key => {
-      return json[key].map(message => {
-        return (messages = `${messages || ""}${message} `);
-      });
-    });
-
-    return messages;
   }
 };

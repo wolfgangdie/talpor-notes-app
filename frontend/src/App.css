@@ -45,3 +45,8 @@ input[type="submit"]:focus:disabled {
   color: var(--tna-disabled-dark-color);
   background-color: var(--tna-disabled-light-color);
 }
+
+.Toastify__toast {
+  padding: 1.25rem;
+  border-radius: 5px;
+}
