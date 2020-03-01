@@ -2,12 +2,12 @@ import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 
 import Home from "./containers/Home";
-import Login from "./containers/Login";
+import Login from "./containers/auth/Login";
 import NoMatch from "./containers/NoMatch";
 import NoteCreate from "./containers/notes/Create";
 import NotesList from "./containers/notes/List";
-import Protected from "./containers/Protected";
-import Register from "./containers/Register";
+import Protected from "./containers/auth/Protected";
+import Register from "./containers/auth/Register";
 
 const BaseRouter = () => (
   <div className="router">

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Route, withRouter } from "react-router-dom";
 import { Redirect } from "react-router";
 
-import { authTokenSelector } from "../store/selectors/auth";
+import { authTokenSelector } from "../../store/selectors/auth";
 
 class Protected extends Component {
   render = () => {

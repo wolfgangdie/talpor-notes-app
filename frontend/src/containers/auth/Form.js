@@ -5,7 +5,7 @@ import classNames from "classnames";
 import {
   authErrorSelector,
   authLoadingSelector
-} from "../store/selectors/auth";
+} from "../../store/selectors/auth";
 
 import "./Form.css";
 

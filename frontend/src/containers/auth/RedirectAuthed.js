@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 
-import { authTokenSelector } from "../store/selectors/auth";
+import { authTokenSelector } from "../../store/selectors/auth";
 
 class RedirectAuthed extends Component {
   render = () => {

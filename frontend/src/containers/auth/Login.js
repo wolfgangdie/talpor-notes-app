@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Form from "./Form";
-import Layout from "../components/Layout";
-import { login } from "../store/actions/auth";
+import Layout from "../../components/Layout";
+import { login } from "../../store/actions/auth";
 import RedirectAuthed from "./RedirectAuthed";
 
 class Login extends Component {
