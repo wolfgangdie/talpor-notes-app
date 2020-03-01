@@ -1,8 +1,5 @@
 import { toast } from "react-toastify";
 
-export const FIVE_MINUTES_IN_MILLISECONDS = 300 * 1000;
-export const ONE_DAY_IN_MILLISECONDS = 24 * 3600 * 1000;
-
 export const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,

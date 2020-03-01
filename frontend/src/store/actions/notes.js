@@ -1,4 +1,6 @@
 import * as actionTypes from "./actionTypes";
+import * as api from "../utils/api";
+import { handleErrorMessage } from "../utils/helpers";
 
 // ---------------------------------------------------
 // Notes list actions
@@ -55,6 +57,23 @@ export const noteAddFail = error => {
 export const getNotes = () => {
   return async dispatch => {
     dispatch(notesListRequest());
-    dispatch(notesListFail());
+
+    try {
+      const response = await fetch(
+        `${api.BASE_URL}/notes/`,
+        api.settings(api.METHOD_GET)
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw Error(JSON.stringify(json));
+      }
+
+      dispatch(notesListSuccess(json.results));
+    } catch (error) {
+      handleErrorMessage(error);
+      dispatch(notesListFail(error));
+    }
   };
 };

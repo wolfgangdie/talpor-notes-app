@@ -23,7 +23,7 @@ class NoteViewSet(ModelViewSet):
         user = self.request.user
 
         if user.is_authenticated:
-            return Note.objects.filter(owner=user)
+            return Note.objects.filter(owner=user).order_by('-created_at')
 
         raise PermissionDenied()
 

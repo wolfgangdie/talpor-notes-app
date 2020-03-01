@@ -11,7 +11,7 @@ export const METHOD_DELETE = "DELETE";
  * @param {string} method
  * @param {Object} data
  */
-export const settings = (method, data) => {
+export const settings = (method, data = null) => {
   const request = {
     method: method,
     headers: {

@@ -1,0 +1,21 @@
+.notes.list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.notes.list .note {
+  padding: 2rem;
+  border: 1px solid var(--tna-disabled-light-color);
+  border-radius: 5px;
+}
+
+.notes.list .note p {
+  margin: 0;
+}
+
+.notes.list .note span {
+  display: inline-block;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--tna-disabled-light-color);
+}
