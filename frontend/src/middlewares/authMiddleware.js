@@ -6,8 +6,9 @@ const FIVE_SECONDS_IN_MILLISECONDS = 5000;
 export const authMiddleware = ({ dispatch, getState }) => {
   return next => async action => {
     if (typeof action === "function") {
-      if (getState().auth.token && getState().auth.refresh) {
-        const { token, refresh, loading } = getState().auth;
+      const { token, refresh, loading } = getState().auth;
+
+      if (token && refresh) {
         const tokenExpired =
           tokenExpiration(token).getTime() - FIVE_SECONDS_IN_MILLISECONDS <=
           new Date().getTime();
@@ -25,7 +26,18 @@ export const authMiddleware = ({ dispatch, getState }) => {
           dispatch(logout());
         }
       }
+
+      if (token && !refresh) {
+        const tokenExpired =
+          tokenExpiration(token).getTime() - FIVE_SECONDS_IN_MILLISECONDS <=
+          new Date().getTime();
+
+        if (tokenExpired) {
+          dispatch(logout());
+        }
+      }
     }
+
     return next(action);
   };
 };

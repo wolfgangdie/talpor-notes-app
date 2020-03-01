@@ -65,7 +65,7 @@ export const checkTokenExpiration = () => {
       if (tokenExpired) {
         dispatch(logout());
       } else {
-        dispatch(authSuccess(token));
+        dispatch(authSuccess(token, null));
       }
     }
   };

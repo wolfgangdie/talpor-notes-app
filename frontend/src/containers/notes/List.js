@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getNotes } from "../../store/actions/notes";
 import Layout from "../../components/Layout";
+import Loading from "../../components/Loading";
 import Note from "../../components/Note";
 import {
   notesListSelector,
   noteLoadingSelector
 } from "../../store/selectors/notes";
+
+import "./List.css";
 
 class NotesList extends Component {
   componentDidMount = () => {
@@ -19,7 +23,12 @@ class NotesList extends Component {
     return (
       <Layout>
         <div className="notes list">
-          {loading && "Loading ..."}
+          <div className="add">
+            <Link className="btn" to="/notes/create/">
+              New note
+            </Link>
+          </div>
+          {loading && <Loading />}
           {!loading &&
             (result || []).map(note => {
               return (
@@ -28,7 +37,7 @@ class NotesList extends Component {
                 </Note>
               );
             })}
-          {!result && (
+          {result && result.length === 0 && !loading && (
             <p className="empty">You don't have notes to be displayed</p>
           )}
         </div>
