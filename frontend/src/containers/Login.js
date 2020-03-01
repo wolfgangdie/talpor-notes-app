@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Form from "./Form";
 import Layout from "../components/Layout";
 import { login } from "../store/actions/auth";
+import RedirectAuthed from "./RedirectAuthed";
 
 class Login extends Component {
   handleSubmit = (user, pass) => {
@@ -11,10 +12,14 @@ class Login extends Component {
   };
 
   render = () => {
+    const { from } = this.props.location.state || {};
+
     return (
-      <Layout>
-        <Form login={true} handleSubmit={this.handleSubmit} />
-      </Layout>
+      <RedirectAuthed from={from}>
+        <Layout>
+          <Form login={true} handleSubmit={this.handleSubmit} />
+        </Layout>
+      </RedirectAuthed>
     );
   };
 }

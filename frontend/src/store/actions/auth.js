@@ -1,6 +1,8 @@
 import * as actionTypes from "./actionTypes";
 import * as api from "../utils/api";
-import { handleErrorMessage } from "../utils/helpers";
+import { handleErrorMessage, tokenExpiration } from "../utils/helpers";
+
+const FIVE_SECONDS_IN_MILLISECONDS = 5000;
 
 // ---------------------------------------------------
 // Authentication actions
@@ -49,6 +51,53 @@ export const tokenRefreshSuccess = token => {
     type: actionTypes.TOKEN_REFRESH_SUCCESS,
     token: token
   };
+};
+
+export const checkTokenExpiration = () => {
+  return dispatch => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      const tokenExpired =
+        tokenExpiration(token).getTime() - FIVE_SECONDS_IN_MILLISECONDS <=
+        new Date().getTime();
+
+      if (tokenExpired) {
+        dispatch(logout());
+      } else {
+        dispatch(authSuccess(token));
+      }
+    }
+  };
+};
+
+export const refreshToken = async (refresh, dispatch) => {
+  dispatch(tokenRefreshRequest());
+
+  try {
+    const data = {
+      refresh: refresh
+    };
+
+    const response = await fetch(
+      `${api.BASE_URL}/token/refresh/`,
+      api.settings(api.METHOD_POST, data)
+    );
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw Error(JSON.stringify(json));
+    }
+
+    const { access } = json;
+
+    localStorage.setItem("token", access);
+
+    dispatch(tokenRefreshSuccess(access));
+  } catch (error) {
+    dispatch(logout());
+  }
 };
 
 // ---------------------------------------------------
@@ -121,33 +170,4 @@ export const register = (user, email, pass, passRepeat) => {
       dispatch(authFail(error));
     }
   };
-};
-
-export const refreshToken = async (refresh, dispatch) => {
-  dispatch(tokenRefreshRequest());
-
-  try {
-    const data = {
-      refresh: refresh
-    };
-
-    const response = await fetch(
-      `${api.BASE_URL}/token/refresh/`,
-      api.settings(api.METHOD_POST, data)
-    );
-
-    const json = await response.json();
-
-    if (!response.ok) {
-      throw Error(JSON.stringify(json));
-    }
-
-    const { access } = json;
-
-    localStorage.setItem("token", access);
-
-    dispatch(tokenRefreshSuccess(access));
-  } catch (error) {
-    dispatch(logout());
-  }
 };
