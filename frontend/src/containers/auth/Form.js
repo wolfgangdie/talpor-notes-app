@@ -7,7 +7,7 @@ import {
   authLoadingSelector
 } from "../../store/selectors/auth";
 
-import "./Form.css";
+import "../Form.css";
 
 class Form extends Component {
   constructor(props) {

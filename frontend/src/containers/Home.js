@@ -24,7 +24,7 @@ class Home extends Component {
             </a>
           </p>
           <NavLink activeClassName="active" className="btn" to="/notes/">
-            Mis notas
+            My notes
           </NavLink>
         </div>
       </Layout>

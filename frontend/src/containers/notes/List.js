@@ -24,6 +24,7 @@ class NotesList extends Component {
       <Layout>
         <div className="notes list">
           <div className="add">
+            <h1>Notes</h1>
             <Link className="btn" to="/notes/create/">
               New note
             </Link>

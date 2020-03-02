@@ -35,6 +35,12 @@ export const tokenExpiration = token => {
   return new Date(parseJWT(token).exp * 1000);
 };
 
+export const handleSuccessMessage = message => {
+  if (message) {
+    toast.success(message);
+  }
+};
+
 export const handleErrorMessage = error => {
   if (error) {
     if (error instanceof TypeError) {

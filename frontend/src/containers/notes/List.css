@@ -3,5 +3,17 @@
 }
 
 .notes.list .add {
-  text-align: right;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.notes.list .add h1 {
+  margin: 0.5rem 0;
+}
+
+.notes.list .add .btn {
+  justify-self: right;
+  width: max-content;
+  height: min-content;
 }

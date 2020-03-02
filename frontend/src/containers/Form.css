@@ -8,7 +8,8 @@
   margin-top: 0;
 }
 
-.form input {
+.form input,
+.form textarea {
   display: inline-block;
   border: 1px solid var(--tna-main-color);
   border-radius: 5px;
@@ -21,7 +22,9 @@
   margin-bottom: 0;
 }
 
-.form input:disabled {
+.form input:disabled,
+.form textarea:disabled {
+  cursor: not-allowed;
   border-color: var(--tna-disabled-dark-color);
   background-color: var(--tna-disabled-light-color);
 }
