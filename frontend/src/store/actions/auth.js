@@ -1,5 +1,8 @@
 import * as actionTypes from "./actionTypes";
 import * as api from "../utils/api";
+import { handleErrorMessage, tokenExpiration } from "../utils/helpers";
+
+const FIVE_SECONDS_IN_MILLISECONDS = 5000;
 
 // ---------------------------------------------------
 // Authentication actions
@@ -50,46 +53,21 @@ export const tokenRefreshSuccess = token => {
   };
 };
 
-// ---------------------------------------------------
-// Authentication main actions
-// ---------------------------------------------------
+export const checkTokenExpiration = () => {
+  return dispatch => {
+    const token = localStorage.getItem("token");
 
-export const login = (user, password) => {
-  return async dispatch => {
-    dispatch(authRequest());
+    if (token) {
+      const tokenExpired =
+        tokenExpiration(token).getTime() - FIVE_SECONDS_IN_MILLISECONDS <=
+        new Date().getTime();
 
-    try {
-      const data = {
-        username: user,
-        password: password
-      };
-
-      const response = await fetch(
-        `${api.BASE_URL}/token/`,
-        api.settings(api.METHOD_POST, data)
-      );
-
-      const json = await response.json();
-
-      if (!response.ok) {
-        throw Error(JSON.stringify(json));
+      if (tokenExpired) {
+        dispatch(logout());
+      } else {
+        dispatch(authSuccess(token, null));
       }
-
-      const { access, refresh } = json;
-
-      localStorage.setItem("token", access);
-
-      dispatch(authSuccess(access, refresh));
-    } catch (error) {
-      dispatch(authFail(error));
     }
-  };
-};
-
-export const register = (user, email, pass, passRepeat) => {
-  return async dispatch => {
-    dispatch(authRequest());
-    dispatch(authFail());
   };
 };
 
@@ -122,21 +100,74 @@ export const refreshToken = async (refresh, dispatch) => {
   }
 };
 
-export const handleError = error => {
-  if (error) {
-    if (error instanceof TypeError) {
-      error = Error(JSON.stringify({ error_conn: [`${error.message}.`] }));
+// ---------------------------------------------------
+// Authentication main actions
+// ---------------------------------------------------
+
+export const login = (user, pass) => {
+  return async dispatch => {
+    dispatch(authRequest());
+
+    try {
+      const data = {
+        username: user,
+        password: pass
+      };
+
+      const response = await fetch(
+        `${api.BASE_URL}/token/`,
+        api.settings(api.METHOD_POST, data)
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw Error(JSON.stringify(json));
+      }
+
+      const { access, refresh } = json;
+
+      localStorage.setItem("token", access);
+
+      dispatch(authSuccess(access, refresh));
+    } catch (error) {
+      handleErrorMessage(error);
+      dispatch(authFail(error));
     }
+  };
+};
 
-    let messages;
-    const json = JSON.parse(error.message);
+export const register = (user, email, pass, passRepeat) => {
+  return async dispatch => {
+    dispatch(authRequest());
 
-    Object.keys(json).map(key => {
-      return json[key].map(message => {
-        return (messages = `${messages || ""}${message} `);
-      });
-    });
+    try {
+      const data = {
+        username: user,
+        email: email,
+        password: pass,
+        passwordr: passRepeat
+      };
 
-    return messages;
-  }
+      const response = await fetch(
+        `${api.BASE_URL}/users/register/`,
+        api.settings(api.METHOD_POST, data)
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw Error(JSON.stringify(json));
+      }
+
+      const { access, refresh } = json;
+
+      localStorage.setItem("token", access);
+
+      dispatch(authSuccess(access, refresh));
+    } catch (error) {
+      handleErrorMessage(error);
+      dispatch(authFail(error));
+    }
+  };
 };

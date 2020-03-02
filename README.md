@@ -8,6 +8,7 @@ Author: Wolfgang Dielingen ([wolfrainx@gmail.com](mailto:wolfrainx@gmail.com)).
 
 - Frontend: [https://tna-demo.netlify.com/](https://tna-demo.netlify.com/)
 - Backend: [https://wolfgangdie.pythonanywhere.com/](https://wolfgangdie.pythonanywhere.com/)
+  - Endpoints: [Swagger](https://wolfgangdie.pythonanywhere.com/docs/swagger/) / [ReDoc](https://wolfgangdie.pythonanywhere.com/docs/redoc/)
 
 ## Backend configuration
 
