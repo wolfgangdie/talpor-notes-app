@@ -6,11 +6,9 @@ Author: Wolfgang Dielingen ([wolfrainx@gmail.com](mailto:wolfrainx@gmail.com)).
 
 ## Demo
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0a42738e-aaee-4d38-813d-da8e5b57280e/deploy-status)](https://app.netlify.com/sites/tna-demo/deploys)
-
-- Frontend: [https://tna-demo.netlify.com/](https://tna-demo.netlify.com/)
-- Backend: [https://wolfgangdie.pythonanywhere.com/](https://wolfgangdie.pythonanywhere.com/)
-  - Endpoints: [Swagger](https://wolfgangdie.pythonanywhere.com/docs/swagger/) / [ReDoc](https://wolfgangdie.pythonanywhere.com/docs/redoc/)
+- Frontend: [https://tna-demo.netlify.com/](https://tna-demo.netlify.com/) (Deactivated)
+- Backend: [https://wolfgangdie.pythonanywhere.com/](https://wolfgangdie.pythonanywhere.com/) (Deactivated)
+  - Endpoints: [Swagger](https://wolfgangdie.pythonanywhere.com/docs/swagger/) / [ReDoc](https://wolfgangdie.pythonanywhere.com/docs/redoc/) (Deactivated)
 
 ## Backend configuration
 
